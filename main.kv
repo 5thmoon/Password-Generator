@@ -1,0 +1,97 @@
+ScreenManager:
+    Generator:
+<Generator>:
+    MDScreen:
+    MDFloatLayout:
+        slider_val: slider_val
+        new_password: new_password
+        MDCard:
+            padding: 4
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            size_hint: None, None
+            size: "385dp", "680dp"
+            line_color: '#9063CD'
+        MDLabel:
+            text: 'Password Generator'
+            halign: 'center'
+            pos_hint: {"center_x": 0.5, "center_y": 0.9}
+            font_size: 24
+        MDTextField:
+            id: new_password
+            text: "New Password"
+            multiline: True
+            size_hint: .9, None
+            password: True
+            font_size: 19
+            pos_hint: {"center_x": 0.5, "center_y": 0.75}
+            password: False
+            mode: "rectangle"
+        MDLabel:
+            text: 'Password Length:'
+            pos_hint: {"center_x": 0.7, "center_y": 0.6}
+            font_size: 20
+        MDLabel:
+            id: slider_val
+            halign: "center"
+            pos_hint: {"center_x": 0.75, "center_y": 0.6}
+            value: 4
+            font_size: 20
+            text: str(int(slider.value))
+        MDSlider:
+            id: slider
+            color: '#9063CD'
+            size_hint: .9, .02
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            hint: True
+            hint_bg_color: '#9063CD'
+            hint_radius: [6, 0, 6, 0]
+            hint_text_color: "white"
+            thumb_color_inactive: "white"
+            min: 4
+            max: 40
+            value: 4
+            on_value: root.slider_value(*args)
+        MDRaisedButton:
+            icon: "content-copy"
+            text: "Copy"
+            size_hint: .9, None
+            pos_hint: {"center_x": 0.5, "center_y": 0.4}
+            font_size: "16sp"
+            on_press: root.copy()
+        MDRaisedButton:
+            icon: "creation"
+            text: "Generate Password"
+            size_hint: .9, None
+            pos_hint: {"center_x": 0.5, "center_y": 0.3}
+            font_size: "16sp"
+            on_press: root.press_to_generate()
+        FloatLayout:
+            MDLabel:
+                text: 'Letters (e.g. Aa)'
+                pos_hint: {"center_x": 0.75, "center_y": 0.225}
+            Check:
+                id: check1
+                pos_hint: {"center_x": 0.15, "center_y": 0.225}
+                active: True
+                on_active: root.on_checkbox_active(*args)
+            MDLabel:
+                text: 'Digits (e.g. 345)'
+                pos_hint: {"center_x": 0.75, "center_y": 0.14}
+            Check:
+                id: check2
+                pos_hint: {"center_x": 0.15, "center_y": 0.14}
+                active: True
+                on_active: root.on_checkbox_active(*args)
+            MDLabel:
+                text: 'Symbols (@&$!#?)'
+                pos_hint: {"center_x": 0.75, "center_y": 0.055}
+            Check:
+                id: check3
+                pos_hint: {"center_x": 0.15, "center_y": 0.055}
+                active: True
+                on_active: root.on_checkbox_active(*args)
+
+<Check@MDCheckbox>:
+    size_hint: None, None
+    width: dp(28)
+    height: dp(28)
